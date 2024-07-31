@@ -1,6 +1,6 @@
 ### SAMPLE-FLASK
 
-Voici un exemple d'application web minimaliste installable sur le ctrlX Core. L'objectif de cette application est de servir de base pour développer une interface utilisateur.
+Voici un exemple d'application web minimaliste installable sur le ctrlX Core. L'objectif de cette application est de servir de base pour le développement d'une interface utilisateur.
 
 ## Instalation 
 - Setup l'app build environement du SDK CtrlX
