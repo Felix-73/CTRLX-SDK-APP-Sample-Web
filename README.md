@@ -8,7 +8,7 @@ Voici un exemple d'application web minimaliste installable sur le ctrlX Core. L'
 `base: core20` pour un os 1.X  
 `base: core22` pour un os 2.X
 
-- Pour build l'application utiliser les fichier executables :        
+- Pour build l'application utiliser les fichiers executables :        
 `./build-snap-arm64.sh` pour un CtrlX 3   
 `./build-snap-amd64.sh` pour un CtrlX virtuel
 
