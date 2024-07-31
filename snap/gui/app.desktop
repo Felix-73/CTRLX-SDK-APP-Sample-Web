@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=sample-flask
+Exec=sample-flask-webapp.desktop-launch
+Icon=${SNAP}/meta/gui/icon.png
+Terminal=false
+Categories=Development;

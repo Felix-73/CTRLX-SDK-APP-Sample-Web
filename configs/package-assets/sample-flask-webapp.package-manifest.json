@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.boschrexroth.com/ctrlx-automation/ctrlx-core/apps/package-manifest/package-manifest.v1.3.schema.json",
+    "version": "1.0.0",
+    "id": "sample-flask",
+        "services": {
+      "proxyMapping": [
+        {
+          "name": "sample-flask-server",
+          "url": "/sample-flask",
+          "binding": "unix://{$SNAP_DATA}/package-run/sample-flask-webapp/example.sock"    
+        }
+      ]
+    },
+    "menus": {
+      "sidebar": [
+        {
+          "id": "sample-flask-server",
+          "target": "_blank",
+          "title": "sample-flask",
+          "icon": "bosch-ic-automation",
+          "link": "/sample-flask"
+        }
+      ],
+      "settings": [
+      ],
+      "overview": [
+        {
+          "id": "sample-flask-server",
+          "title": "sample-flask",
+          "icon": "Bosch-Ic-worldwideweb",
+          "link": "/sample-flask"
+        }
+      ]    
+    }
+  }
