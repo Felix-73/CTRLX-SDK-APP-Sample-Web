@@ -3,7 +3,7 @@
 
 
 mkdir $SNAP_DATA/package-run
-mkdir $SNAP_DATA/package-run/sample-flask-webapp
+mkdir $SNAP_DATA/package-run/sample-web
 
 cd $SNAP/bin/Flask/
 

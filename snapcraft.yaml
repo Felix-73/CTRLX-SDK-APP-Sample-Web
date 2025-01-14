@@ -1,8 +1,8 @@
-name: sample-flask-webapp
+name: sample-web
 version: '1.0.1-ctrlx'
 base: core22
 summary: Sample to have a full webapp architecture serving on flask
-description: |
+description: todo
       
 confinement: strict
 grade: stable
@@ -12,7 +12,6 @@ architectures:
 
     
 apps:
- 
   flask-server: 
     command: bin/runserver.wrapper  
     plugs:
@@ -20,12 +19,9 @@ apps:
       - network-observe
       - network
       - network-bind
+      - home
+      - removable-media
     daemon: simple 
-    
-  desktop-launch:
-    command: bin/desktop-launch
-    plugs:
-      - desktop  
    
 
 parts:
@@ -38,11 +34,16 @@ parts:
       - flask
     source: .
   
-  python-code:  
+  python-code: 
     source: ./Flask/
     plugin: dump
     organize:
       '*': bin/Flask/
+    prime:
+      - bin/Flask/static/**
+      - bin/Flask/templates/**
+      - bin/Flask/app.py
+
 
   shscripts:  
     source: ./shscripts/

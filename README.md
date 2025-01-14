@@ -1,14 +1,64 @@
-### SAMPLE-FLASK
+# sample-web
 
-Voici un exemple d'application web minimaliste installable sur le ctrlX Core. L'objectif de cette application est de servir de base pour le développement d'une interface utilisateur.
+Ce projet sert comme base pour le développement d'une UI Web sur le CtrlX OS. Il montre une architecture possible et compatible une fois snappé dans le ctrlX Core. 
 
-## Instalation 
-- Setup l'app build environement du SDK CtrlX
-- Modifier le fichier snapcraft si necessaire :  
-`base: core20` pour un os 1.X  
-`base: core22` pour un os 2.X
+## Rendu 
 
-- Pour build l'application utiliser les fichiers executables :        
-`./build-snap-arm64.sh` pour un CtrlX 3   
-`./build-snap-amd64.sh` pour un CtrlX virtuel
+![alt text](ReadmePic/app.png)
+![alt text](ReadmePic/home.png)
+![alt text](ReadmePic/page1.png)
+![alt text](ReadmePic/graphic.png)
 
+## Librairies
+
+Le framework web utilisé est Flask. Dans cet exemple j'ai intégré deux librairies : 
+- [Chart.js](https://www.chartjs.org/)
+- [Bootstrap](https://getbootstrap.com/)
+
+Très utilisés, je pense qu'elles permettront de réaliser 99% des dashboards
+
+## Structure web
+
+```
+├── app.py
+├── static
+│   ├── bootstrap-5.0.2-dist
+│   │   ├── css
+│   │   └── js
+│   ├── css
+│   │   └── styles.css
+│   └── js
+│       ├── Chart.min.js
+│       ├── barChart.js
+│       ├── homeLineChart.js
+│       ├── lineChart.js
+│       └── pieChart.js
+└── templates
+    ├── base.html
+    ├── graphique.html
+    ├── index.html
+    ├── navbar.html
+    └── page1.html
+```
+
+## Structure Snap
+
+```
+├── Flask
+├── configs
+│   └── package-assets
+│       └── sample-flask-webapp.package-manifest.json
+├── requirements.txt
+├── sample-web_1.0.1-ctrlx_amd64.snap
+├── sample-web_1.0.1-ctrlx_arm64.snap
+├── shscripts
+│   ├── desktop-launch
+│   ├── info.sh
+│   └── runserver.wrapper
+├── snap
+│   ├── gui
+│   │   └── icon.png
+│   └── hooks
+│       ├── install
+│       └── remove
+├── snapcraft.yaml
