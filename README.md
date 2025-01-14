@@ -1,7 +1,6 @@
 # sample-web
 
-Ce projet sert comme base pour le développement d'une UI Web sur le CtrlX OS. Il montre une architecture possible et compatible une fois snappé dans le ctrlX Core. 
-
+Ce projet sert de base pour le développement d'une interface utilisateur (UI) Web sur le CtrlX OS. Il présente une architecture compatible une fois installée (snap) dans le ctrlX Core.
 ## Rendu 
 
 ![alt text](ReadmePic/app.png)
@@ -11,12 +10,12 @@ Ce projet sert comme base pour le développement d'une UI Web sur le CtrlX OS. I
 
 ## Librairies
 
-Le framework web utilisé est Flask. Dans cet exemple j'ai intégré deux librairies : 
+Le framework web utilisé est Flask. Dans cet exemple, j'ai intégré localement deux bibliothèques très répandues :
+
 - [Chart.js](https://www.chartjs.org/)
 - [Bootstrap](https://getbootstrap.com/)
 
-Très utilisés, je pense qu'elles permettront de réaliser 99% des dashboards
-
+Ces bibliothèques, largement utilisées dans le développement web, permettent de réaliser l'interface utilisateur de la quasi-totalité des dashboard.
 ## Structure web
 
 ```
@@ -52,7 +51,6 @@ Très utilisés, je pense qu'elles permettront de réaliser 99% des dashboards
 ├── sample-web_1.0.1-ctrlx_amd64.snap
 ├── sample-web_1.0.1-ctrlx_arm64.snap
 ├── shscripts
-│   ├── desktop-launch
 │   ├── info.sh
 │   └── runserver.wrapper
 ├── snap
@@ -62,3 +60,28 @@ Très utilisés, je pense qu'elles permettront de réaliser 99% des dashboards
 │       ├── install
 │       └── remove
 ├── snapcraft.yaml
+```
+
+## Cet exemple vous fait rêver et vous voulez l'installer ?
+
+```bash
+git clone https://github.com/Felix-73/CTRLX-SDK-APP-Sample-Web.git
+pip install -r requirements.txt
+```
+Pour debuger localement :
+
+```bash
+cd Flask
+flask run
+```
+Avant de snapper :
+```bash
+chmod - R 755 *
+```
+Pour un virtuel : 
+```bash
+./build-snap-amd64.sh  
+```
+Pour CtrlX3
+```bash
+./build-snap-armd64.sh
