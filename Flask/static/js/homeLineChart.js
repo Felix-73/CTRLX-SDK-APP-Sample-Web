@@ -25,6 +25,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     labels: {
                         color: '#5A7C91'
                     }
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'xy',
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
                 }
             },
             scales: {
