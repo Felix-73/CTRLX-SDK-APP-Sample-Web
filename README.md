@@ -48,8 +48,6 @@ Ces bibliothèques, largement utilisées dans le développement web, permettent 
 │   └── package-assets
 │       └── sample-flask-webapp.package-manifest.json
 ├── requirements.txt
-├── sample-web_1.0.1-ctrlx_amd64.snap
-├── sample-web_1.0.1-ctrlx_arm64.snap
 ├── shscripts
 │   ├── info.sh
 │   └── runserver.wrapper
