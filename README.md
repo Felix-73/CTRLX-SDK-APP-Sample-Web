@@ -48,8 +48,6 @@ Ces bibliothèques, largement utilisées dans le développement web, permettent 
 │   └── package-assets
 │       └── sample-flask-webapp.package-manifest.json
 ├── requirements.txt
-├── sample-web_1.0.1-ctrlx_amd64.snap
-├── sample-web_1.0.1-ctrlx_arm64.snap
 ├── shscripts
 │   ├── info.sh
 │   └── runserver.wrapper
@@ -85,4 +83,7 @@ Pour un virtuel :
 Pour CtrlX3
 ```bash
 ./build-snap-armd64.sh
+<<<<<<< HEAD
 ```
+=======
+>>>>>>> 0077ef819bc9f50504f033857183d40098cc3314
