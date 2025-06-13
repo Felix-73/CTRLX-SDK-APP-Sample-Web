@@ -1,7 +1,8 @@
 #!/bin/bash
 
 
-
+mkdir -p $SNAP_DATA/db
+chmod 755 $SNAP_DATA/db
 mkdir $SNAP_DATA/package-run
 mkdir $SNAP_DATA/package-run/sample-web
 

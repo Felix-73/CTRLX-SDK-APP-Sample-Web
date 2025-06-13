@@ -2,51 +2,44 @@
 
 {% block content %}
 
-<div class="container-fluid h-100 mt-4">
-    <div class="row h-100">
-        <!-- Premier texte -->
-        <div class="col-6">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2>Lorem ipsum 1</h2>
-                    <p>Et possimus aliquam eum voluptate possimus est inventore labore ut atque aliquid qui soluta aperiam. Quo ipsum sunt qui tempora quia et optio exercitationem id omnis minus sit error vitae vel quae quaerat.</p>
-                </div>
-            </div>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Premier iframe - Google Maps -->
+        <div class="col-md-4">
+            <h2>GOOGLE MAPS IFRAME</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="400" frameborder="0"
+                allowfullscreen>
+            </iframe>
         </div>
 
-        <!-- Deuxième texte -->
-        <div class="col-6">
-            <div class="card h-100 ">
-                <div class="card-body">
-                    <h2>Lorem ipsum 2</h2>
-                    <p>Et possimus aliquam eum voluptate possimus est inventore labore ut atque aliquid qui soluta aperiam. Quo ipsum sunt qui tempora quia et optio exercitationem id omnis minus sit error vitae vel quae quaerat.</p>
-                </div>
-            </div>
+        <!-- Deuxième iframe - Bosch Rexroth -->
+        <div class="col-md-4">
+            <h2>COMMUNITY BOSCH REXROTH IFRAME</h2>
+            <iframe src="https://community.boschrexroth.com/home" width="100%" height="400" frameborder="0"
+                allowfullscreen>
+            </iframe>
         </div>
 
-            <!-- Espacement -->
-        <div style="height: 20px;"></div>
-
-        <!-- troisième texte -->
-        <div class="col-6">
-            <div class="card h-100 ">
-                <div class="card-body">
-                    <h2>Lorem ipsum 3</h2>
-                    <p>Et possimus aliquam eum voluptate possimus est inventore labore ut atque aliquid qui soluta aperiam. Quo ipsum sunt qui tempora quia et optio exercitationem id omnis minus sit error vitae vel quae quaerat.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- quatrième texte -->
-        <div class="col-6">
-            <div class="card h-100 ">
-                <div class="card-body">
-                    <h2>Lorem ipsum 4</h2>
-                    <p>Et possimus aliquam eum voluptate possimus est inventore labore ut atque aliquid qui soluta aperiam. Quo ipsum sunt qui tempora quia et optio exercitationem id omnis minus sit error vitae vel quae quaerat.</p>
-                </div>
-            </div>
+        <!-- Troisième iframe - Grafana -->
+        <div class="col-md-4">
+            <h2>GRAFANA IFRAME</h2>
+            <iframe src="https://grafana.com/" width="100%" height="400" frameborder="0" allowfullscreen>
+                <!-- /grafana/?orgId=1 -->
+            </iframe>
         </div>
     </div>
+    <div class="row">
+        <!-- Quatrième iframe - InfluxDB -->
+        <div class="col-md-4">
+            <h2>INFLUX IFRAME</h2>
+            <iframe src="/influxdb/onboarding/0" width="100%" height="400" frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+
+    </div>
+
 </div>
+
 
 {% endblock %}

@@ -61,13 +61,15 @@ Ces bibliothèques, largement utilisées dans le développement web, permettent 
 ```
 
 ## Cet exemple vous fait rêver et vous voulez l'installer ?
+### version snapcraft 
+- 8.9.2
 
 ```bash
 git clone https://github.com/Felix-73/CTRLX-SDK-APP-Sample-Web.git
 pip install -r requirements.txt
 ```
 Pour debuger localement :
-
+(ne pas oublier d'installer le venv)
 ```bash
 cd Flask
 flask run
@@ -83,6 +85,8 @@ Pour un virtuel :
 Pour CtrlX3
 ```bash
 ./build-snap-armd64.sh
+
+
 <<<<<<< HEAD
 ```
 =======

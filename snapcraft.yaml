@@ -2,13 +2,16 @@ name: sample-web
 version: '1.0.0'
 base: core22
 summary: Sample to have a full webapp architecture with flask
-description: todo
-      
+description: |
+  This sample shows how to create a web server app in ctrlX
 confinement: strict
 grade: stable
+
 architectures:
-  - build-on: amd64
-  - build-on: arm64
+  - build-on: [amd64, arm64]
+    build-for: [amd64]
+  - build-on: [amd64, arm64]
+    build-for: [arm64]
 
     
 apps:
@@ -21,6 +24,8 @@ apps:
       - network-bind
       - home
       - removable-media
+      - system-files
+      - snapcraft-files  
     daemon: simple 
    
 
@@ -32,6 +37,8 @@ parts:
       - PYTHONPATH: "$SNAPCRAFT_PART_INSTALL/usr/lib/python3/dist-packages"
     python-packages: 
       - flask
+      - flask_sqlalchemy
+      - flask-cors
     source: .
   
   python-code: 
