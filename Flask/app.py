@@ -82,6 +82,11 @@ def page1():
 def page2():
     return render_template('graphique.html')
 
+@app.route('/sample-web/people')
+def people_page():
+    people = Person.query.all()
+    return render_template('people.html', people=people)
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ######## API simple pour les personnes ###########
 
@@ -125,12 +130,6 @@ def delete_person(person_id):
     db.session.commit()
     return jsonify({'result': True})
 
-# Page simple pour afficher et gérer les personnes
-@app.route('/sample-web/people')
-def people_page():
-    """Page pour afficher et gérer les personnes"""
-    people = Person.query.all()
-    return render_template('people.html', people=people)
 
 ##server start
 

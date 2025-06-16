@@ -1,167 +1,55 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/people.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/people.js') }}"></script>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des personnes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        form {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        input[type="text"],
-        input[type="number"] {
-            padding: 8px;
-            width: 100%;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 8px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-
-        .delete-btn {
-            background-color: #f44336;
-        }
-    </style>
 </head>
 
 <body>
-    <h1>Liste des personnes</h1>
+    <div class="people-container">
+        <form id="add-person-form">
+            <h2>Ajouter une personne dans la Base SQLite</h2>
+            <div>
+                <label for="name">Nom:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div>
+                <label for="age">Âge:</label>
+                <input type="number" id="age" min="0" max="120" required>
+            </div>
+            <button type="submit">Ajouter</button>
+        </form>
 
-    <form id="add-person-form">
-        <h2>Ajouter une personne</h2>
-        <div>
-            <label for="name">Nom:</label>
-            <input type="text" id="name" required>
-        </div>
-        <div>
-            <label for="age">Âge:</label>
-            <input type="number" id="age" min="0" max="120" required>
-        </div>
-        <button type="submit">Ajouter</button>
-    </form>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Âge</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="people-table-body">
-            {% for person in people %}
-            <tr>
-                <td>{{ person.id }}</td>
-                <td>{{ person.name }}</td>
-                <td>{{ person.age }}</td>
-                <td>
-                    <button class="delete-btn" data-id="{{ person.id }}">Supprimer</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Formulaire d'ajout
-            const form = document.getElementById('add-person-form');
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const name = document.getElementById('name').value;
-                const age = document.getElementById('age').value;
-
-                fetch('/sample-web/api/people', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name: name, age: parseInt(age) })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.error) {
-                            alert(data.error);
-                        } else {
-                            // Recharger la page pour voir la nouvelle personne
-                            window.location.reload();
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erreur:', error);
-                        alert('Une erreur s\'est produite');
-                    });
-            });
-
-            // Boutons de suppression
-            document.querySelectorAll('.delete-btn').forEach(button => {
-                button.addEventListener('click', function () {
-                    const personId = this.getAttribute('data-id');
-
-                    if (confirm('Êtes-vous sûr de vouloir supprimer cette personne ?')) {
-                        fetch(`/sample-web/api/people/${personId}`, {
-                            method: 'DELETE'
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.result) {
-                                    // Recharger la page
-                                    window.location.reload();
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Erreur:', error);
-                                alert('Une erreur s\'est produite');
-                            });
-                    }
-                });
-            });
-        });
-    </script>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Âge</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="people-table-body">
+                {% for person in people %}
+                <tr>
+                    <td>{{ person.id }}</td>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.age }}</td>
+                    <td>
+                        <button class="delete-btn" data-id="{{ person.id }}">Supprimer</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
+
+{% endblock %}
