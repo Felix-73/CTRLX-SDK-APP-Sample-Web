@@ -74,7 +74,7 @@ flask run
 ```
 Avant de snapper :
 ```bash
-chmod - R 755 *
+chmod -R 755 *
 ```
 Pour un virtuel : 
 ```bash
