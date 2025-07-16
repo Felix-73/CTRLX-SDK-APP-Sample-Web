@@ -1,0 +1,102 @@
+/* Conteneur principal de la page Datalayer */
+.datalayer-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.625rem;
+}
+
+/* Boîtes de contenu */
+.datalayer-box {
+    background-color: #f9f9f9;
+    box-shadow: 0 5px 5px 0 #d6dee375;
+    padding: 20px;
+    width: 700px;
+    line-height: 2.5rem;
+    text-align: left;
+    margin: 10px auto 0 auto;
+    border-radius: 5px;
+}
+
+/* Formulaires */
+.datalayer-form {
+    margin-top: 10px;
+}
+
+/* Champs de texte et sélecteurs */
+.datalayer-input[type="text"],
+.datalayer-select {
+    height: 30px;
+    padding: 0 10px;
+    font-size: 12pt;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Dimensions spécifiques pour les champs de saisie de nœud */
+#read-node-textbox,
+#write-node-textbox {
+    width: 450px;
+}
+
+/* Zone de texte pour les valeurs à écrire */
+.datalayer-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 12pt;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+/* Boutons */
+.datalayer-button {
+    height: 32px;
+    font-size: 12pt;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #00CCFF;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 0 15px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.datalayer-button:hover {
+    background-color: #002B49;
+}
+
+/* Zones d'affichage des résultats */
+.datalayer-output {
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Media queries pour la responsivité */
+@media (max-width: 768px) {
+    .datalayer-box {
+        width: 90%;
+        padding: 15px;
+    }
+
+    #read-node-textbox,
+    #write-node-textbox {
+        width: 100%;
+    }
+
+    .datalayer-form p {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .datalayer-button {
+        margin-top: 10px;
+    }
+}

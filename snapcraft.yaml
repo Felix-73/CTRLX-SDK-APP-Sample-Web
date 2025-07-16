@@ -39,6 +39,7 @@ parts:
       - flask
       - flask_sqlalchemy
       - flask-cors
+      - requests
     source: .
   
   python-code: 
@@ -49,6 +50,7 @@ parts:
     prime:
       - bin/Flask/static/**
       - bin/Flask/templates/**
+      - bin/Flask/boschrexrothApi/**
       - bin/Flask/app.py
 
 

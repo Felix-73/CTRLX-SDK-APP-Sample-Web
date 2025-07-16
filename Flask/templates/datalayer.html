@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/datalayer.css') }}">
+
+<div class="datalayer-container">
+    <div class="datalayer-box">
+        <p><b>Read ctrlX Data Layer Node</b></p>
+        <div id="read-form" class="datalayer-form">
+            <p>Node:
+                <input id="read-node-textbox" class="datalayer-input" type="text" name="node" value="{{ read_path }}">
+                <select id="read-type-select" class="datalayer-select">
+                    <option value="">Default</option>
+                    <option value="metadata">Metadata</option>
+                    <option value="browse">Browse</option>
+                </select>
+                <button id="read-button" class="datalayer-button" type="button">Read Value</button>
+            </p>
+            <p>Value: <span id="read-value" class="datalayer-output">{{ read_value }}</span></p>
+            <p>Result: <span id="read-result" class="datalayer-output">{{ read_result }}</span></p>
+        </div>
+    </div>
+
+    <div class="datalayer-box">
+        <p><b>Write ctrlX Data Layer Node</b></p>
+        <div id="write-form" class="datalayer-form">
+            <p>Node: <input id="write-node-textbox" class="datalayer-input" type="text" name="node"
+                    value="{{ write_path }}"></p>
+            <p>Value: <textarea id="write-value-textbox" class="datalayer-textarea"
+                    rows="4">{{ write_value }}</textarea></p>
+            <p><button id="write-button" class="datalayer-button" type="button">Write Value</button></p>
+            <p>Result: <span id="write-result" class="datalayer-output">{{ write_result }}</span></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Fonction pour lire un nœud
+        document.getElementById('read-button').addEventListener('click', function () {
+            const nodePath = encodeURIComponent(document.getElementById('read-node-textbox').value);
+            const readType = document.getElementById('read-type-select').value;
+
+            let url = `/sample-web/api/datalayer/${nodePath}`;
+            if (readType) {
+                url += `?type=${readType}`;
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('read-value').innerText = JSON.stringify(data.data, null, 2);
+                        document.getElementById('read-result').innerText = 'Success';
+                    } else {
+                        document.getElementById('read-value').innerText = '';
+                        document.getElementById('read-result').innerText = 'Error: ' + data.error;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('read-value').innerText = '';
+                    document.getElementById('read-result').innerText = 'Error: ' + error.message;
+                });
+        });
+
+        // Fonction pour écrire dans un nœud
+        document.getElementById('write-button').addEventListener('click', function () {
+            const nodePath = encodeURIComponent(document.getElementById('write-node-textbox').value);
+            const valueText = document.getElementById('write-value-textbox').value;
+
+            let valueJson;
+            try {
+                valueJson = JSON.parse(valueText);
+            } catch (e) {
+                document.getElementById('write-result').innerText = 'Error: Invalid JSON format';
+                return;
+            }
+
+            fetch(`/sample-web/api/datalayer/${nodePath}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(valueJson)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('write-result').innerText = 'Success: Value written';
+                    } else {
+                        document.getElementById('write-result').innerText = 'Error: ' + data.error;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('write-result').innerText = 'Error: ' + error.message;
+                });
+        });
+    });
+</script>
+{% endblock %}

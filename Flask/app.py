@@ -1,10 +1,18 @@
-from flask import Flask, redirect, render_template, request, session, url_for, Response, Blueprint, jsonify 
+from flask import Flask, redirect, render_template, request, session, url_for, Response, Blueprint, jsonify
 # Import pour SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
 import os
 from werkzeug.serving import run_simple
 from werkzeug.middleware.proxy_fix import ProxyFix
+from boschrexrothApi.boschrexrothAPI import BoschrexrothAPI, BoschrexrothAPIConfig
 
+# Initialisation de l'API Bosch
+config = BoschrexrothAPIConfig(
+    base_url="https://localhost",
+    username="boschrexroth",
+    password="boschrexroth"
+)
+bosch_api = BoschrexrothAPI(config)
 
 # Déterminer les chemins en fonction de l'environnement
 if "SNAP" in os.environ:
@@ -67,8 +75,8 @@ with app.app_context():
         print("Données de test ajoutées.")
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~
-########## serving functions #######
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+########## HTML PAGES ############
 
 @app.route('/sample-web')
 def index():
@@ -88,7 +96,7 @@ def people_page():
     return render_template('people.html', people=people)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-######## API simple pour les personnes ###########
+############## API simple SQLite #################
 
 @app.route('/sample-web/api/people', methods=['GET'])
 def get_people():
@@ -130,6 +138,71 @@ def delete_person(person_id):
     db.session.commit()
     return jsonify({'result': True})
 
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+################ API DATALAYER ###################
+
+@app.route('/sample-web/api/datalayer/<path:node_path>', methods=['GET'])
+def read_datalayer(node_path):
+    try:
+        # Récupérer les paramètres de requête
+        query_params = {}
+        if 'type' in request.args:
+            query_params['type'] = request.args.get('type')
+        
+        # URL-encode le chemin du nœud si nécessaire
+        encoded_path = node_path
+        
+        # Appeler l'API
+        data = bosch_api.read_datalayer(encoded_path, query_params)
+        return jsonify({'success': True, 'data': data})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/sample-web/api/datalayer/<path:node_path>', methods=['PUT'])
+def write_datalayer(node_path):
+    try:
+        # Récupérer les données JSON du corps de la requête si présentes
+        data = request.json if request.is_json and request.data else None
+        
+        # URL-encode le chemin du nœud si nécessaire
+        encoded_path = node_path
+        
+        # Appeler l'API
+        result = bosch_api.write_datalayer(encoded_path, data)
+        return jsonify({'success': True, 'data': result})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/sample-web/datalayer', methods=['GET'])
+def datalayer_page():
+    # Valeurs par défaut ou récupérées de la session
+    read_path = session.get('read_path', 'system/info/time')
+    read_value = session.get('read_value', '')
+    read_result = session.get('read_result', '')
+    write_path = session.get('write_path', 'system/identify')
+    write_value = session.get('write_value', '{}')
+    write_result = session.get('write_result', '')
+    
+    return render_template('datalayer.html', 
+                          read_path=read_path,
+                          read_value=read_value, 
+                          read_result=read_result,
+                          write_path=write_path, 
+                          write_value=write_value,
+                          write_result=write_result)
+
+@app.route('/sample-web/api/test-auth', methods=['GET'])
+def test_auth():
+    try:
+        result = bosch_api.get_auth_token()
+        return jsonify({
+            'success': True, 
+            'token_obtained': bosch_api.token is not None,
+            'token_preview': bosch_api.token[:10] + '...' if bosch_api.token else None
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 ##server start
 
