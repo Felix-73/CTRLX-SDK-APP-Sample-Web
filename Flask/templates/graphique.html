@@ -3,40 +3,52 @@
 {% block content %}
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-<div class="container-fluid h-100">
-    <div class="row h-100" style="margin-top: 10px;">
-        <div class="col-md-6 h-50">
-            <div class="card h-95">
+<div class="container-fluid charts-grid">
+    <div class="row g-4">
+
+        <!-- Carte d'information -->
+        <div class="col-md-6">
+            <div class="info-card">
+                <h2>Exemple visuel</h2>
+                <p>Une librairie javascript a été intégrée dans l'application permettant d'intégrer des graphiques
+                    facilement. Vous pouvez retrouver tous les exemples et les codes source sur le site
+                    <a href="https://www.chartjs.org/" target="_blank">Chart.js. </a>
+
+                </p>
+            </div>
+        </div>
+        <!-- Graphique en Camembert -->
+        <div class="col-md-6">
+            <div class="chart-card">
                 <div class="card-body">
-                    <h6 class="card-title" style="color: #002B49;">Graphique en Camembert</h6>
-                    <div class="chart-container" style="position: relative; height: 85%;">
+                    <h6 class="chart-title">Graphique en Camembert</h6>
+                    <div class="chart-container">
                         <canvas id="pieChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 h-50">
-            <div class="card h-95">
+        <!-- Graphique en Barres -->
+        <div class="col-md-6">
+            <div class="chart-card">
                 <div class="card-body">
-                    <h6 class="card-title" style="color: #002B49;">Graphique en Barres</h6>
-                    <div class="chart-container" style="position: relative; height: 85%;">
+                    <h6 class="chart-title">Graphique en Barres</h6>
+                    <div class="chart-container">
                         <canvas id="barChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
-            <!-- Espacement -->
-        <div style="height: 20px;"></div>
 
-        <div class="col-md-6 h-50">
-            <div class="card h-95">
+        <!-- Graphique Linéaire -->
+        <div class="col-md-6">
+            <div class="chart-card">
                 <div class="card-body">
-                    <h6 class="card-title" style="color: #002B49;">Graphique Linéaire</h6>
-                    <div class="chart-container" style="position: relative; height: 85%;">
+                    <h6 class="chart-title">Graphique Linéaire</h6>
+                    <div class="chart-container">
                         <canvas id="lineChart"></canvas>
                     </div>
                 </div>

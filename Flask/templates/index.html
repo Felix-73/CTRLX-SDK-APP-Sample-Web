@@ -10,10 +10,16 @@
         <div class="col-6 px-2">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h2>Lorem ipsum 1</h2>
-                    <p>Et possimus aliquam eum voluptate possimus est inventore labore ut atque aliquid qui soluta
-                        aperiam. Quo ipsum sunt qui tempora quia et optio exercitationem id omnis minus sit error vitae
-                        vel quae quaerat.</p>
+                    <h2>Application de présentation</h2>
+                    <p> L'objectif de cette démo est de montrer les possibilités qu'offre le SDK a travers une IHM
+                        web hébergée dans une app. Chaque onglet présente une fonction spécifique. Dans l'ordre, on y
+                        trouve une page
+                        montrant les capacités graphiques via la librairie chart.js, puis une page démontrant
+                        l'intégration d'iframes dans l'application. L'onglet "datalayer" permet de communiquer avec le
+                        contrôleur à travers le brocker datalayer. Pour finir, une base de données SQLite a été intégrée
+                        dans l'application et vous pouvez y faire des requêtes depuis l'onglet "DataBase SQLite
+                        "
+                    </p>
                 </div>
             </div>
         </div>
@@ -22,10 +28,14 @@
         <div class="col-6 px-2">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h2>Lorem ipsum 2</h2>
-                    <p>Et possimus aliquam eum voluptate possimus est inventore labore ut atque aliquid qui soluta
-                        aperiam. Quo ipsum sunt qui tempora quia et optio exercitationem id omnis minus sit error vitae
-                        vel quae quaerat.</p>
+                    <h2>Son architecture</h2>
+                    <p>L'application tourne sur flask. Ce framework python permet d'héberger localement des pages web.
+                        Grâce à lui, on peu aussi communiquer avec notre base de données a travers SQLAlchemy.
+                        Si vous souhaitez installer l'application complète ou voir
+                        son code source, rendez-vous sur <a
+                            href="https://github.com/Felix-73/CTRLX-SDK-APP-Sample-Web/tree/DataBase-and-Iframe">Github.</a>
+                        Vous y trouverez dans le readme toute la documentation nécessaire.
+                    </p>
                 </div>
             </div>
         </div>
@@ -36,7 +46,7 @@
 
     <div class="row">
         <div class="col-12 text-center">
-            <img src="{{ url_for('static', filename='img/ctrlX_OS_Keyvisual_cross_594x420_RGB.jpg') }}" alt="CtrlX OS"
+            <img src="{{ url_for('static', filename='img/architecture.png') }}" alt="CtrlX OS"
                 class="img-fluid shadow-sm rounded" style="max-height: 400px; width: auto;">
         </div>
     </div>
