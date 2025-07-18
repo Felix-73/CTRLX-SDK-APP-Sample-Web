@@ -76,18 +76,12 @@ flask run
 ```
 Avant de snapper :
 ```bash
-chmod - R 755 *
+chmod -R 755 *
 ```
-Pour un virtuel : 
+Pour un virtuel et X7: 
 ```bash
 ./build-snap-amd64.sh  
 ```
 Pour CtrlX3
 ```bash
 ./build-snap-armd64.sh
-
-
-<<<<<<< HEAD
-```
-=======
->>>>>>> 0077ef819bc9f50504f033857183d40098cc3314
