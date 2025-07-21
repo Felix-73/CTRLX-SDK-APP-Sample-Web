@@ -2,14 +2,15 @@ name: sample-web
 version: '1.0.0'
 base: core22
 summary: Sample to have a full webapp architecture with flask
-description: todo
+description: git hub https://github.com/Felix-73/CTRLX-SDK-APP-Sample-Web
       
 confinement: strict
 grade: stable
 architectures:
-  - build-on: amd64
-  - build-on: arm64
-
+  - build-on: [amd64, arm64]
+    build-for: [amd64]
+  - build-on: [amd64, arm64]
+    build-for: [arm64]
     
 apps:
   flask-server: 
